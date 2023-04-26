@@ -37,6 +37,13 @@ async function run() {
       const result = await reminderCollection.find(query).toArray();
       res.send(result);
     });
+
+    app.delete("/reminder/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await reminderCollection.deleteOne(query);
+      res.send(result);
+    });
   } finally {
   }
 }
